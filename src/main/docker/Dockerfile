@@ -6,7 +6,7 @@ ADD ./build.gradle build.gradle
 ADD ./settings.gradle settings.gradle
 ADD ./gradlew gradlew
 RUN ./gradlew bootJar
-RUN native-image -jar build/libs/plantuml-server-native.jar
+#RUN native-image -jar build/libs/plantuml-server-native.jar
 
 # runtime
 FROM openjdk:17-slim-buster
@@ -17,6 +17,6 @@ RUN apt-get update && \
         && \
     rm -rf /var/lib/apt/lists/*
 WORKDIR /deployments
-COPY --from=builder /workspace/plantuml-server-native plantuml-server-native
+COPY --from=builder /workspace/build/libs/plantuml-server-native.jar plantuml-server-native.jar
 EXPOSE 8080
-CMD ["./deployments/plantuml-server-native"]
+CMD ["java","-jar","/deployments/plantuml-server-native.jar"]

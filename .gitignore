@@ -3,6 +3,7 @@
 ######################
 lombok.config
 *.hprof
+plantuml-server-native*
 
 ######################
 # Eclipse
