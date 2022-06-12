@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <link rel="icon" th:href="@{/favicon.ico}" type="image/x-icon"/>
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon"/>
+    <title>PlantUMLServer</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" th:href="@{/webjars/codemirror/5.65.3/lib/codemirror.css}"/>
+
+    <script>
+        window.onload = function () {
+            document.myCodeMirror = CodeMirror.fromTextArea(
+                document.getElementById("text"),
+                {lineNumbers: true}
+            );
+        };
+    </script>
+
+</head>
+<body>
+
+<div id="header">
+    <h1>PlantUML Server</h1>
+    <p>Create your <a href="https://plantuml.com">PlantUML</a> diagrams directly in your browser!</p>
+</div>
+
+<div id="content">
+
+    <form method="post" accept-charset="utf-8" action="submitBody">
+        <p>
+        <textarea id="text" name="text" cols="120" rows="10" th:text="${text}">
+        </textarea>
+            <input type="submit"/>
+        </p>
+    </form>
+
+    <hr/>
+    <p>You can enter here a previously generated URL:</p>
+    <form method="post" th:action="submitUrl">
+        <p>
+            <input name="url" type="text" size="150" th:value="${imageUrl}"/>
+            <br/>
+            <input type="submit"/>
+        </p>
+    </form>
+
+    <hr/>
+    <a th:href="${svgUrl}">View as SVG</a>&nbsp;
+    <a th:href="${txtUrl}">View as ASCII Art</a>&nbsp;
+    <a th:href="${mapUrl}" th:if="${hasMap}">View Map Data</a>
+
+    <p id="diagram">
+        <img th:src="${imageUrl}" alt="PlantUML diagram"/>
+        <span>[[${map}]]</span>
+    </p>
+
+</div>
+
+<div id="footer">
+    <p>
+        PlantUML Server Version [[${version}]]
+    </p>
+</div>
+
+</body>
+<script th:src="@{/webjars/codemirror/5.65.3/lib/codemirror.js}"></script>
+</html>

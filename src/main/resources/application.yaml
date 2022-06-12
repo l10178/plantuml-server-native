@@ -1,0 +1,11 @@
+spring:
+  profiles:
+    active: default
+server:
+  port: 8080
+
+plantuml:
+  server:
+    defaultFileFormat: ${DEFAULT_FILE_FORMAT:png}
+    proxyAuthorization: ${HTTP_PROXY_AUTHORIZATION:}
+    proxyTimeout: ${HTTP_PROXY_TIMEOUT:10s}
