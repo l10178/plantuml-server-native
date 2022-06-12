@@ -1,0 +1,9 @@
+spring:
+  profiles:
+    active: default
+
+plantuml:
+  server:
+    defaultFileFormat: ${DEFAULT_FILE_FORMAT:png}
+    proxyAuthorization: ${HTTP_AUTHORIZATION:}
+    proxyTimeout: 10s
