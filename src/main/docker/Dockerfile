@@ -6,7 +6,7 @@ ADD ./build.gradle build.gradle
 ADD ./settings.gradle settings.gradle
 ADD ./gradlew gradlew
 RUN ./gradlew bootJar
-RUN native-image -jar build/libs/plantuml-server-springboot.jar
+RUN native-image -jar build/libs/plantuml-server-native.jar
 
 # runtime
 FROM openjdk:17-slim-buster
