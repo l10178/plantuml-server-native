@@ -1,10 +1,11 @@
-FROM ghcr.io/graalvm/native-image:22.1.0 AS builder
+FROM nxest/native-image:0.0.5 AS builder
 WORKDIR /workspace
 ADD ./src src/
 ADD ./gradle gradle/
 ADD ./build.gradle build.gradle
 ADD ./settings.gradle settings.gradle
 ADD ./gradlew gradlew
+RUN apt-get update && apt-get install -y --no-install-recommends libfreetype-dev
 RUN ./gradlew bootJar
 #RUN native-image -jar build/libs/plantuml-server-native.jar
 
